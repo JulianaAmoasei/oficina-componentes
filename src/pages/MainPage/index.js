@@ -6,8 +6,15 @@ import CartArea from '../../components/CartArea';
 import cardapio from '../../data/cardapio';
 
 export default function MainPage() {
+  
+  const [itemsList, setItemsList] = useState([])
 
-  const [addItem, setAddItem] = useState([])
+  const removeButton = (event, index) => {
+    event.preventDefault();
+    const updatedItemsList = [...itemsList];
+    updatedItemsList.splice(index, 1);
+    setItemsList(updatedItemsList);
+  };
 
   return (
   <>
@@ -23,12 +30,14 @@ export default function MainPage() {
               descricao={item.descricao}
               preco={item.preco}
               onClick={() => {
-                setAddItem([...addItem, {nome: item.nome, preco: item.preco}])
+                setItemsList([...itemsList, { nome: item.nome, preco: item.preco }])
               }}
             />)
         })}
       </MenuArea>
-      <CartArea arrItem={addItem}>
+      <CartArea
+        arrItem={itemsList}
+        removeButton={removeButton}>
       </CartArea>
     </MenuPage>
   </>

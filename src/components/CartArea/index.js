@@ -8,7 +8,7 @@ const Section = styled.section`
   padding: 10px;
 `;
 
-export default function CartArea({ arrItem }) {
+export default function CartArea({ arrItem, removeButton }) {
   return (
     <Section>
       {arrItem.map((item) => {
@@ -17,8 +17,9 @@ export default function CartArea({ arrItem }) {
             key={item.id}  
             nome={item.nome}
             preco={item.preco}
+            remove={removeButton}
           />)
       })}
     </Section> 
- )
+  )
 }
